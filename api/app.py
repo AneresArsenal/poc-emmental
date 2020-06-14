@@ -12,4 +12,6 @@ setup(FLASK_APP,
 
 
 if __name__ == '__main__':
-    FLASK_APP.run(*TBW*)
+#     FLASK_APP.run(*TBW*)
+      port=80
+      FLASK_APP.run(host='127.0.0.1', port=port, debug=True)

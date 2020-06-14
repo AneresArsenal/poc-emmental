@@ -2,19 +2,23 @@ version: '3.2'
 
 services:
   api:
-    build:
-      *TBW*
+    build: .
+      # *TBW*
     command: >
-      *TBW*
+      # *TBW*
     container_name: poc-api
     depends_on:
-      *TBW*
+      # *TBW*
+      - db
     environment:
-      *TBW*
+      # *TBW*
+      STAGE: test
+      
     networks:
-      *TBW*
+      # *TBW*
+      - default
     ports:
-      *TBW*
+      - 80:80
     volumes:
       - ./api:*TBW*
 
