@@ -5,5 +5,6 @@ from utils.db import db
 def clean():
     ''' Order of deletions matters because of foreign key constraints '''
     print('clean all the database...')
-    *TBW*
+    User.query.delete()
+    db.session.commit()
     print('clean all the database...Done.')

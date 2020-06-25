@@ -5,6 +5,8 @@ from utils.db import Model
 
 class User(Model):
 
-    id = *TBW*
+    id = Column(BigInteger,
+               primary_key=True,
+               autoincrement=True)
 
-    email = *TBW*
+    email = Column(String(20), nullable=False, unique=True)

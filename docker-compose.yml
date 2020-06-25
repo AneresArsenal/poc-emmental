@@ -2,39 +2,41 @@ version: '3.2'
 
 services:
   api:
-    build: .
-      # *TBW*
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
     command: >
-      # *TBW*
+      bash -c "set -x;
+               cd /opt/api;
+               while true; do python app.py; done;"
     container_name: poc-api
     depends_on:
-      # *TBW*
-      - db
+      - apidb
     environment:
-      # *TBW*
-      STAGE: test
-      
+      - POSTGRES_URL=postgresql://poc_user:poc_password@apidb/poc_api
     networks:
-      # *TBW*
-      - default
+      - db_nw
     ports:
       - 80:80
     volumes:
-      - ./api:*TBW*
+      - ./api:/opt/api
 
   apidb:
-    command: *TBW*
+    command: postgres -c logging_collector=on -c log_destination=stderr -c log_min_duration_statement=0 -c log_statement=all -c log_duration=on
     container_name: poc-apidb
     environment:
-      *TBW*
+      - POSTGRES_DB=poc_api
+      - POSTGRES_PASSWORD=poc_password
+      - POSTGRES_USER=poc_user
     image: postgres:10.1
     networks:
-      *TBW*
+      - db_nw
     volumes:
-      - "./docker_data/apidb:*TBW*"
+      - "./docker_data/apidb:/var/lib/postgresql"
 
 networks:
-  *TBW*
+  db_nw:
+    driver: bridge
 
 volumes:
   docker_data:
