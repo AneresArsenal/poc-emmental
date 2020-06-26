@@ -16,6 +16,10 @@ class AuthorContent(ApiHandler,
                           backref=backref('authorContents'),
                           foreign_keys=[authorId])
 
-    contentId = *TBW*
+    contentId = Column(BigInteger(),
+                       ForeignKey('content.id'),
+                       primary_key=True)
 
-    content = *TBW*
+    content = relationship('Content',
+                           backref=backref('authorContents'),
+                           foreign_keys=[contentId])

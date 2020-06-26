@@ -7,6 +7,6 @@ from utils.db import Model
 class Tag(ApiHandler,
           Model):
 
-    info = *TBW*
+    info = Column(Text(), nullable=True)
 
-    label = *TBW*
+    label = Column(String(128))

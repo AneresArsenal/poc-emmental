@@ -1,11 +1,15 @@
 import enum
 from sqlalchemy import Column, \
                        Enum, \
-                       String
+                       String, \
+                       BigInteger, \
+                       ForeignKey
+from sqlalchemy.orm import relationship
 from sqlalchemy_api_handler import ApiHandler
 
 from models.mixins.has_science_feedback_mixin import HasScienceFeedbackMixin
 from utils.db import Model
+
 
 
 class ContentType(enum.Enum):
@@ -18,12 +22,18 @@ class Content(ApiHandler,
               Model,
               HasScienceFeedbackMixin):
 
-    mediumId = *TBW*
+    mediumId = Column(BigInteger(),
+                      ForeignKey('medium.id'),
+                        nullable=False,
+                        index=True)
+    # *TBW*
 
-    medium = *TBW*
+    medium = relationship('Medium',
+                            foreign_keys=[mediumId])
+    # *TBW*
 
-    title = *TBW*
+    title = Column(String(140))
 
     type = Enum(ContentType)
 
-    url = *TBW*
+    url = Column(String(512), nullable=False, unique=True)

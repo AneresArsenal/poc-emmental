@@ -1,9 +1,10 @@
 from flask import current_app as app, jsonify, request
-from sqlalchemy_api_handler import ApiHandler
+from sqlalchemy_api_handler import ApiHandler, dehumanize
 
 from models.verdict import Verdict
 from repository.reviews import keep_verdicts_with_keywords_chain, \
                                keep_verdicts_with_tag
+                               
 from utils.rest import listify
 
 
@@ -55,11 +56,12 @@ def get_reviews():
 
     keywords_chain = request.args.get('keywords')
     if keywords_chain is not None:
-        query = *TBW*
+        query = query.filter_by(contentId=dehumanize(keywords_chain))
+
 
     tag = request.args.get('tag')
     if tag:
-        query = *TBW*
+        query = query.filter_by(contentId=dehumanize(tag))
 
     return listify(Verdict,
                    includes=INCLUDES,

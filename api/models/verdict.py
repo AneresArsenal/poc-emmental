@@ -14,13 +14,21 @@ class Verdict(ApiHandler,
               Model,
               HasScienceFeedbackMixin):
 
-    claimId = *TBW*
+    claimId = Column(BigInteger(),
+                     ForeignKey('claim.id'),
+                     index=True)
 
-    claim = *TBW*
+    claim = relationship('Claim',
+                         backref='verdicts',
+                         foreign_keys=[claimId])
 
-    contentId = *TBW*
+    contentId = Column(BigInteger(),
+                       ForeignKey('content.id'),
+                       index=True)
 
-    content = *TBW*
+    content = relationship('Content',
+                           foreign_keys=[contentId],
+                           backref='verdicts')
 
     editorId = Column(BigInteger(),
                       ForeignKey('user.id'),
@@ -31,4 +39,4 @@ class Verdict(ApiHandler,
                           foreign_keys=[editorId],
                           backref='verdicts')
 
-    title = *TBW*
+    title = Column(String(30))

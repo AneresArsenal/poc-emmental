@@ -38,13 +38,21 @@ class Appearance(ApiHandler,
                                  foreign_keys=[quotedContentId],
                                  backref='quotedFromAppearances')
 
-    quotedClaimId = *TBW*
+    quotedClaimId = Column(BigInteger(),
+                           ForeignKey('claim.id'),
+                           index=True)
 
-    quotedClaim = *TBW*
+    quotedClaim = relationship('Claim',
+                               foreign_keys=[quotedClaimId],
+                               backref='quotedFromAppearances')
 
-    quotingContentId = *TBW*
+    quotingContentId = Column(BigInteger(),
+                             ForeignKey('content.id'),
+                             index=True)
 
-    quotingContent = *TBW*
+    quotingContent = relationship('Content',
+                                 foreign_keys=[quotedContentId],
+                                 backref='quotedFromAppearances')
 
     quotingClaimId = Column(BigInteger(),
                             ForeignKey('claim.id'),
@@ -54,9 +62,14 @@ class Appearance(ApiHandler,
                                 foreign_keys=[quotingClaimId],
                                 backref='quotingToAppearances')
 
-    stance = *TBW*
+    stance = Column(Enum(StanceType))
 
 
-    testifierId = *TBW*
+    testifierId = Column(BigInteger(),
+                         ForeignKey('user.id'),
+                         nullable=False,
+                         index=True)
 
-    testifier = *TBW*
+    testifier = relationship('User',
+                             foreign_keys=[testifierId],
+                             backref='appearances')
