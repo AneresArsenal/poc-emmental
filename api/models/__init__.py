@@ -28,7 +28,7 @@ def import_models(with_creation=False):
 
     if with_creation:
         db.create_all()
-        db.engine.execute("CREATE INDEX IF NOT EXISTS idx_activity_objid ON activity(cast(changed_data->>'id' AS INT));")
+        # db.engine.execute("CREATE INDEX IF NOT EXISTS idx_activity_objid ON activity(cast(changed_data->>'id' AS INT));")
         db.session.commit()
 
     import_keywords()

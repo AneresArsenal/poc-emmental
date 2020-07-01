@@ -26,11 +26,9 @@ class Content(ApiHandler,
                       ForeignKey('medium.id'),
                         nullable=False,
                         index=True)
-    # *TBW*
 
     medium = relationship('Medium',
                             foreign_keys=[mediumId])
-    # *TBW*
 
     title = Column(String(140))
 

@@ -44,7 +44,7 @@ class Appearance(ApiHandler,
 
     quotedClaim = relationship('Claim',
                                foreign_keys=[quotedClaimId],
-                               backref='quotedFromAppearances')
+                               backref='quotedClaimFromAppearances')
 
     quotingContentId = Column(BigInteger(),
                              ForeignKey('content.id'),
@@ -52,7 +52,7 @@ class Appearance(ApiHandler,
 
     quotingContent = relationship('Content',
                                  foreign_keys=[quotedContentId],
-                                 backref='quotedFromAppearances')
+                                 backref='quotedContentFromAppearances')
 
     quotingClaimId = Column(BigInteger(),
                             ForeignKey('claim.id'),

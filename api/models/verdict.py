@@ -28,7 +28,7 @@ class Verdict(ApiHandler,
 
     content = relationship('Content',
                            foreign_keys=[contentId],
-                           backref='verdicts')
+                           backref='verdictsContent')
 
     editorId = Column(BigInteger(),
                       ForeignKey('user.id'),
@@ -37,6 +37,6 @@ class Verdict(ApiHandler,
 
     editor = relationship('User',
                           foreign_keys=[editorId],
-                          backref='verdicts')
+                          backref='verdictsEditor')
 
     title = Column(String(30))

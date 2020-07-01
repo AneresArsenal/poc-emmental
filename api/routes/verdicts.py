@@ -2,8 +2,8 @@ from flask import current_app as app, jsonify, request
 from sqlalchemy_api_handler import ApiHandler, dehumanize
 
 from models.verdict import Verdict
-from repository.reviews import keep_verdicts_with_keywords_chain, \
-                               keep_verdicts_with_tag
+# from repository.reviews import keep_verdicts_with_keywords_chain, \
+#                                keep_verdicts_with_tag
                                
 from utils.rest import listify
 

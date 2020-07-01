@@ -21,5 +21,5 @@ class AuthorContent(ApiHandler,
                        primary_key=True)
 
     content = relationship('Content',
-                           backref=backref('authorContents'),
+                           backref=backref('authortoContents'),
                            foreign_keys=[contentId])

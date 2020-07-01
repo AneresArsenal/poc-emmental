@@ -43,9 +43,9 @@ def import_keywords():
         ),
     )
 
-
-    Medium.__ts_vector__ = (
+    Medium.__ts_vector__ = create_tsvector(
         cast(coalesce(Medium.name, ''), TEXT),
+        cast(coalesce(Medium.url, ''), TEXT),
     )
 
     Medium.__table_args__ = (
@@ -57,7 +57,7 @@ def import_keywords():
     )
 
 
-    Organization.__ts_vector__ = (
+    Organization.__ts_vector__ = create_tsvector(
         cast(coalesce(Organization.name, ''), TEXT),
     )
 

@@ -7,7 +7,7 @@ def clean():
     ''' Order of deletions matters because of foreign key constraints '''
     logger.info('clean all the database...')
     for table in reversed(db.metadata.sorted_tables):
-                print("Clearing table {table_name}...".format(table_name=table))
+        print("Clearing table {table_name}...".format(table_name=table))
         db.session.execute(table.delete())
 
     db.session.commit()

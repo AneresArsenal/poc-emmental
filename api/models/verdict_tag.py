@@ -21,5 +21,5 @@ class VerdictTag(ApiHandler,
                    primary_key=True)
 
     tag = relationship('Tag',
-                       backref=backref('verdictTags'),
+                       backref=backref('verdicttoTags'),
                        foreign_keys=[tagId])

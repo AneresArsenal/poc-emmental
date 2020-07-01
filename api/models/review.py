@@ -28,7 +28,7 @@ class Review(ApiHandler,
                        index=True)
 
     content = relationship('Content',
-                           backref='reviews',
+                           backref='reviewsContent',
                            foreign_keys=[contentId])
 
     comment = Column(Text(), nullable=True)
@@ -42,4 +42,4 @@ class Review(ApiHandler,
 
     reviewer = relationship('User',
                             foreign_keys=[reviewerId],
-                            backref='reviews')
+                            backref='reviewstoReviewer')

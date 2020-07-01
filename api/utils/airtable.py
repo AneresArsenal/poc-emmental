@@ -31,6 +31,7 @@ def request_airtable_rows(
     headers = {'Authorization': 'Bearer {}'.format(token)}
 
     result = requests.get(url, headers=headers).json()
+    print(result)
     records = result['records']
     offset = result.get('offset')
     while offset:
