@@ -12,8 +12,8 @@ services:
     container_name: poc-api
     depends_on:
       - apidb
-    # env_file:
-    #   - ./.env
+    env_file:
+      - ./.env
     environment:
       - POSTGRES_URL=postgresql://poc_user:poc_password@apidb/poc_api
     networks:

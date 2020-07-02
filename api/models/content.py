@@ -24,7 +24,6 @@ class Content(ApiHandler,
 
     mediumId = Column(BigInteger(),
                       ForeignKey('medium.id'),
-                        nullable=False,
                         index=True)
 
     medium = relationship('Medium',
