@@ -30,29 +30,21 @@ class Appearance(ApiHandler,
                  Model,
                  HasScienceFeedbackMixin):
 
-    quotedContentId = Column(BigInteger(),
-                             ForeignKey('content.id'),
-                             index=True)
-
-    quotedContent = relationship('Content',
-                                 foreign_keys=[quotedContentId],
-                                 backref='quotedFromAppearances')
-
     quotedClaimId = Column(BigInteger(),
                            ForeignKey('claim.id'),
                            index=True)
 
     quotedClaim = relationship('Claim',
                                foreign_keys=[quotedClaimId],
-                               backref='quotedClaimFromAppearances')
-
-    quotingContentId = Column(BigInteger(),
+                               backref='quotedFromAppearances')
+                               
+    quotedContentId = Column(BigInteger(),
                              ForeignKey('content.id'),
                              index=True)
 
-    quotingContent = relationship('Content',
+    quotedContent = relationship('Content',
                                  foreign_keys=[quotedContentId],
-                                 backref='quotedContentFromAppearances')
+                                 backref='quotedToAppearances')
 
     quotingClaimId = Column(BigInteger(),
                             ForeignKey('claim.id'),
@@ -61,6 +53,14 @@ class Appearance(ApiHandler,
     quotingClaim = relationship('Claim',
                                 foreign_keys=[quotingClaimId],
                                 backref='quotingToAppearances')
+
+    quotingContentId = Column(BigInteger(),
+                             ForeignKey('content.id'),
+                             index=True)
+
+    quotingContent = relationship('Content',
+                                 foreign_keys=[quotedContentId],
+                                 backref='quotingToAppearances')
 
     stance = Column(Enum(StanceType))
 
