@@ -39,4 +39,4 @@ class Verdict(ApiHandler,
                           foreign_keys=[editorId],
                           backref='verdictsEditor')
 
-    title = Column(String(30))
+    title = Column(String(532))

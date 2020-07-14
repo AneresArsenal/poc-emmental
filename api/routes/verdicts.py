@@ -54,6 +54,7 @@ INCLUDES = [
 def get_reviews():
     query = Verdict.query
 
+    return("hello")
     keywords_chain = request.args.get('keywords')
     if keywords_chain is not None:
         query = query.filter_by(contentId=dehumanize(keywords_chain))
