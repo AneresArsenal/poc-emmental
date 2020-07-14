@@ -48,7 +48,6 @@ class Appearance(ApiHandler,
                                  foreign_keys=[quotedContentId],
                                  backref='quotedFromAppearances')
 
-
     quotingClaimId = Column(BigInteger(),
                             ForeignKey('claim.id'),
                             index=True)
