@@ -16,10 +16,14 @@ class AuthorContent(ApiHandler,
                           backref=backref('authorContents'),
                           foreign_keys=[authorId])
 
-    contentId = Column(BigInteger(),
-                       ForeignKey('content.id'),
-                       primary_key=True)
+    contentId = Column(
+        BigInteger(),
+        ForeignKey('content.id'),
+        primary_key=True
+    )
 
-    content = relationship('Content',
-                           backref=backref('authorContents'),
-                           foreign_keys=[contentId])
+    content = relationship(
+        'Content',
+        backref=backref('authorContents'),
+        foreign_keys=[contentId]
+    )

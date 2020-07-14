@@ -34,17 +34,20 @@ class Appearance(ApiHandler,
                            ForeignKey('claim.id'),
                            index=True)
 
-    quotedClaim = relationship('Claim',
-                               foreign_keys=[quotedClaimId],
-                               backref='quotedFromAppearances')
-                               
+    quotedClaim = relationship(
+        'Claim',
+        backref='quotedFromAppearances',
+        foreign_keys=[quotedClaimId]
+    )
+
     quotedContentId = Column(BigInteger(),
                              ForeignKey('content.id'),
                              index=True)
 
     quotedContent = relationship('Content',
                                  foreign_keys=[quotedContentId],
-                                 backref='quotedToAppearances')
+                                 backref='quotedFromAppearances')
+
 
     quotingClaimId = Column(BigInteger(),
                             ForeignKey('claim.id'),
@@ -54,22 +57,29 @@ class Appearance(ApiHandler,
                                 foreign_keys=[quotingClaimId],
                                 backref='quotingToAppearances')
 
-    quotingContentId = Column(BigInteger(),
-                             ForeignKey('content.id'),
-                             index=True)
+    quotingContentId = Column(
+        BigInteger(),
+        ForeignKey('content.id'),
+        index=True
+    )
 
-    quotingContent = relationship('Content',
-                                 foreign_keys=[quotedContentId],
-                                 backref='quotingToAppearances')
+    quotingContent = relationship(
+        'Content',
+        backref='quotingToAppearances',
+        foreign_keys=[quotingContentId]
+    )
 
     stance = Column(Enum(StanceType))
 
+    testifierId = Column(
+        BigInteger(),
+        ForeignKey('user.id'),
+        nullable=False,
+        index=True
+    )
 
-    testifierId = Column(BigInteger(),
-                         ForeignKey('user.id'),
-                         nullable=False,
-                         index=True)
-
-    testifier = relationship('User',
-                             foreign_keys=[testifierId],
-                             backref='appearances')
+    testifier = relationship(
+        'User',
+        foreign_keys=[testifierId],
+        backref='appearances'
+    )

@@ -14,21 +14,29 @@ class Verdict(ApiHandler,
               Model,
               HasScienceFeedbackMixin):
 
-    claimId = Column(BigInteger(),
-                     ForeignKey('claim.id'),
-                     index=True)
+    claimId = Column(
+        BigInteger(),
+        ForeignKey('claim.id'),
+        index=True
+    )
 
-    claim = relationship('Claim',
-                         backref='verdicts',
-                         foreign_keys=[claimId])
+    claim = relationship(
+        'Claim',
+        backref='verdicts',
+        foreign_keys=[claimId]
+    )
 
-    contentId = Column(BigInteger(),
-                       ForeignKey('content.id'),
-                       index=True)
+    contentId = Column(
+        BigInteger(),
+        ForeignKey('content.id'),
+        index=True
+    )
 
-    content = relationship('Content',
-                           foreign_keys=[contentId],
-                           backref='verdictsContent')
+    content = relationship(
+        'Content',
+        foreign_keys=[contentId],
+        backref='verdicts'
+    )
 
     editorId = Column(BigInteger(),
                       ForeignKey('user.id'),
@@ -37,6 +45,6 @@ class Verdict(ApiHandler,
 
     editor = relationship('User',
                           foreign_keys=[editorId],
-                          backref='verdictsEditor')
+                          backref='verdicts')
 
-    title = Column(String(532))
+    title = Column(String(512))

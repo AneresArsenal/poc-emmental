@@ -23,23 +23,31 @@ class Review(ApiHandler,
                          foreign_keys=[claimId],
                          backref='reviews')
 
-    contentId = Column(BigInteger(),
-                       ForeignKey('content.id'),
-                       index=True)
+    contentId = Column(
+        BigInteger(),
+        ForeignKey('content.id'),
+        index=True
+    )
 
-    content = relationship('Content',
-                           backref='reviewsContent',
-                           foreign_keys=[contentId])
+    content = relationship(
+        'Content',
+        foreign_keys=[contentId],
+        backref='reviews'
+    )
 
     comment = Column(Text(), nullable=True)
 
-    evaluation = Column(BigInteger(), nullable=False)
+    evaluation = Column(Integer())
 
-    reviewerId = Column(BigInteger(),
-                        ForeignKey('user.id'),
-                        nullable=False,
-                        index=True)
+    reviewerId = Column(
+        BigInteger(),
+        ForeignKey('user.id'),
+        nullable=False,
+        index=True
+    )
 
-    reviewer = relationship('User',
-                            foreign_keys=[reviewerId],
-                            backref='reviewstoReviewer')
+    reviewer = relationship(
+        'User',
+        foreign_keys=[reviewerId],
+        backref='reviews'
+    )

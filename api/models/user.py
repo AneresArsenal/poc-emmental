@@ -9,7 +9,7 @@ class User(ApiHandler,
            Model,
            HasScienceFeedbackMixin):
 
-    email = Column(String(120), nullable=False, unique=True)
+    email = Column(String(128), nullable=False, unique=True)
 
     firstName = Column(String(30))
 

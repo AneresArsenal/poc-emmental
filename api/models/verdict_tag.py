@@ -8,18 +8,26 @@ from utils.db import Model
 class VerdictTag(ApiHandler,
                  Model):
 
-    verdictId = Column(BigInteger(),
-                       ForeignKey('verdict.id'),
-                       primary_key=True)
+    verdictId = Column(
+        BigInteger(),
+        ForeignKey('verdict.id'),
+        primary_key=True
+    )
 
-    verdict = relationship('Verdict',
-                           backref=backref('verdictTags'),
-                           foreign_keys=[verdictId])
+    verdict = relationship(
+        'Verdict',
+        backref=backref('verdictTags'),
+        foreign_keys=[verdictId]
+    )
 
-    tagId = Column(BigInteger(),
-                   ForeignKey('tag.id'),
-                   primary_key=True)
+    tagId = Column(
+        BigInteger(),
+        ForeignKey('tag.id'),
+        primary_key=True
+    )
 
-    tag = relationship('Tag',
-                       backref=backref('verdicttoTags'),
-                       foreign_keys=[tagId])
+    tag = relationship(
+        'Tag',
+        backref=backref('verdictTags'),
+        foreign_keys=[tagId]
+    )
