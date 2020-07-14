@@ -3,19 +3,19 @@
 CMD="$1"
 
 if [[ "$CMD" == "build" ]]; then
-  docker-compose build
+  *TBW*
 elif [[ "$CMD" == "clean" || "$CMD" == "sandbox" ]]; then
   docker exec -it poc-api bash -c "cd /opt/api && PYTHONPATH=. python scripts/manager.py '$CMD'"
 elif [[ "$CMD" == "psql" ]]; then
-  docker exec -it poc-apidb bash -c "COLUMNS='' PGPASSWORD=poc_password psql -h localhost -U poc_user poc_api $*"
+   docker exec -it poc-apidb bash -c "COLUMNS='' PGPASSWORD=poc_password psql -h localhost -U poc_user poc_api $*"
 elif [[ "$CMD" == "python" ]]; then
   docker exec -it poc-api bash -c "cd /opt/api && PYTHONPATH=. python -i scripts/shell.py"
 elif [[ "$CMD" == "rebuild" ]]; then
-  docker-compose build
+  *TBW*
 elif [[ "$CMD" == "rmdb" ]]; then
-	docker-compose rm
+	*TBW*
 elif [[ "$CMD" == "restart" ]]; then
-  docker-compose up
+  *TBW*
 elif [[ "$CMD" == "start" ]]; then
   docker-compose up
 fi

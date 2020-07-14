@@ -13,7 +13,7 @@ services:
     depends_on:
       - apidb
     env_file:
-      - ./.env
+        - ./.env
     environment:
       - POSTGRES_URL=postgresql://poc_user:poc_password@apidb/poc_api
     networks:
