@@ -13,7 +13,8 @@ setup(FLASK_APP,
 
 if __name__ == '__main__':
     FLASK_APP.run(
-          host='0.0.0.0',
+          host="0.0.0.0",
           port=80,
           debug=True,
-          use_reloader=True)
+          use_reloader=True
+    )

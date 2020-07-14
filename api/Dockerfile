@@ -1,6 +1,7 @@
 FROM python:3.7
 
 ENV PYTHONUNBUFFERED 1
+
 WORKDIR /opt/api
 
 COPY ./requirements.txt ./
