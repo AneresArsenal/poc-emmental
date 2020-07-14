@@ -2,6 +2,5 @@
 # pylint: disable=W0611
 
 def import_routes():
-    import routes.verdicts
-
     import routes.health
+    import routes.verdicts

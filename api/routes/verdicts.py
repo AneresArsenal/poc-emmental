@@ -1,12 +1,11 @@
+
 from flask import current_app as app, jsonify, request
-from sqlalchemy_api_handler import ApiHandler, dehumanize
+from sqlalchemy_api_handler import ApiHandler
 
 from models.verdict import Verdict
-# from repository.reviews import keep_verdicts_with_keywords_chain, \
-#                                keep_verdicts_with_tag
-                               
+from repository.verdicts import keep_verdicts_with_keywords_chain, \
+                                keep_verdicts_with_tag
 from utils.rest import listify
-
 
 INCLUDES = [
     {
@@ -50,19 +49,18 @@ INCLUDES = [
     }
 ]
 
+
 @app.route('/verdicts', methods=['GET'])
-def get_reviews():
+def get_verdicts():
     query = Verdict.query
 
-    return("hello")
     keywords_chain = request.args.get('keywords')
     if keywords_chain is not None:
-        query = query.filter_by(contentId=dehumanize(keywords_chain))
-
+        query = keep_verdicts_with_keywords_chain(query, keywords_chain)
 
     tag = request.args.get('tag')
     if tag:
-        query = query.filter_by(contentId=dehumanize(tag))
+        query = keep_verdicts_with_tag(query, tag)
 
     return listify(Verdict,
                    includes=INCLUDES,
