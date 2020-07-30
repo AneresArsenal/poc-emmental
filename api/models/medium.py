@@ -15,8 +15,16 @@ class Medium(ApiHandler,
 
     name = Column(String(256), nullable=False)
 
-    organizationId = *TBW*
+    organizationId = Column(
+        BigInteger(),
+        ForeignKey('organization.id'),
+        index=True
+    )
 
-    organization = *TBW*
+    organization = relationship(
+        'Organization',
+        foreign_keys=[organizationId],
+        backref='media'
+    )
 
     url = Column(String(300))

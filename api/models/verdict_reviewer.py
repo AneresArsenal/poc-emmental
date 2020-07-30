@@ -8,10 +8,27 @@ from utils.db import Model
 class VerdictReviewer(ApiHandler,
                       Model):
 
-    verdictId = *TBW*
+    verdictId = Column(
+        BigInteger(),
+        ForeignKey('verdict.id'),
+        primary_key=True
+    )
 
-    verdict = *TBW*
+    verdict = relationship(
+        'Verdict',
+        foreign_keys=[verdictId],
+        backref=backref('verdictReviewers')
 
-    reviewerId = *TBW*
+    )
 
-    reviewer = *TBW*
+    reviewerId = Column(
+        BigInteger(),
+        ForeignKey('user.id'),
+        primary_key=True
+    )
+
+    reviewer = relationship(
+        'User',
+        foreign_keys=[reviewerId],
+        backref=backref('verdictReviewers')
+    )

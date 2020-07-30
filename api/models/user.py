@@ -9,8 +9,8 @@ class User(ApiHandler,
            Model,
            HasScienceFeedbackMixin):
 
-    email = *TBW*
+    email = Column(String(128), nullable=False, unique=True)
 
-    firstName = *TBW*
+    firstName = Column(String(30))
 
-    lastName = *TB
+    lastName = Column(String(30))

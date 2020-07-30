@@ -18,12 +18,20 @@ class Content(ApiHandler,
               Model,
               HasScienceFeedbackMixin):
 
-    mediumId = *TBW*
+    mediumId = Column(
+        BigInteger(),
+        ForeignKey('medium.id'),
+        index=True
+    )
 
-    medium = *TBW*
+    medium = relationship(
+        'Medium',
+        foreign_keys=[mediumId],
+        backref='contents'
+    )
 
-    title = *TBW*
+    title = Column(String(40))
 
     type = Enum(ContentType)
 
-    url = *TBW*
+    url = Column(String(300), nullable=False, unique=True)

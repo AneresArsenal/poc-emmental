@@ -5,4 +5,7 @@ from repository.health import check_database_health
 
 @app.route('/health', methods=['GET'])
 def get_health():
-    *TBW*
+    # *TBW*
+    health = check_health()
+    return_code = 200 if health['working'] else 500
+    return jsonify(health), return_code

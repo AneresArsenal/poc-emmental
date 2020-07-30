@@ -22,6 +22,9 @@ def keep_verdicts_with_keywords_chain(query, keywords_chain):
     # in joined claim, content, media and organization columns
 
     ts_queries = ['{}:*'.format(keyword) for keyword in keywords_chain.split(' ')]
-    ts_filters = *TBW*
+    ts_filters = [
+        verdict_ts_filter(ts_query)
+        for ts_query in ts_queries
+    ]
     query = query.filter(and_(*ts_filters))
     return query

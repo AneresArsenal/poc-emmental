@@ -55,11 +55,11 @@ def get_reviews():
 
     keywords_chain = request.args.get('keywords')
     if keywords_chain is not None:
-        query = *TBW*
+        query = keep_verdicts_with_keywords_chain(query, keywords_chain)
 
     tag = request.args.get('tag')
     if tag:
-        query = *TBW*
+        query = keep_verdicts_with_tag(query, tag)
 
     return listify(Verdict,
                    includes=INCLUDES,

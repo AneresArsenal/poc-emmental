@@ -19,22 +19,31 @@ def setup(flask_app,
           with_routes=False):
 
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('POSTGRES_URL')
-    *TBW*
-
+    # *TBW*
+    flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.app = flask_app
     db.init_app(flask_app)
     ApiHandler.set_db(db)
 
     @flask_app.teardown_request
     def remove_db_session(exc):
         try:
-            *TBW*
+            # *TBW*
+            db.session.remove()
         except AttributeError:
             pass
 
     if with_cors:
-        *TBW*
+        # *TBW*
+        from flask_cors import CORS
+        cors = CORS(flask_app,
+                    resources={r"/*": {"origins": "*"}},
+                    supports_credentials=True)
 
-    *TBW*
+    # *TBW*
+    flask_app.url_map.strict_slashes = False
+
+    flask_app.app_context().push()
     import_models(with_creation=with_models_creation)
 
     if with_routes:
