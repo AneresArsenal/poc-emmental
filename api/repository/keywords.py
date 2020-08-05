@@ -12,16 +12,22 @@ from models.user import User
 
 def create_tsvector(*targets):
     exp = targets[0]
+    # joining each word in a single text
     for target in targets[1:]:
         exp += ' ' + target
+    
+    # create tsvector using english
     return func.to_tsvector('english', exp)
 
 
 def import_keywords():
     Claim.__ts_vector__ = create_tsvector(
+        # cast into text
+        # coalesce remove null values
         cast(coalesce(Claim.text, ''), TEXT),
     )
     Claim.__table_args__ = (
+    # create a customized schema using the ts vector as a GIN index
         Index(
             'idx_claim_fts',
             Claim.__ts_vector__,
