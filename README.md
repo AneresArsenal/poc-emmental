@@ -52,7 +52,7 @@ def create_tsvector(*targets):
     for target in targets[1:]:
         exp += ' ' + target
     
-    # create tsvector using english as the configured language
+    # returns a tsvector using english as the configured language
     return func.to_tsvector('english', exp)
 
 ```
