@@ -3,21 +3,21 @@
 CMD="$1"
 
 if [[ "$CMD" == "build" ]]; then
-  *TBW*
+  docker-compose build
 elif [[ "$CMD" == "clean" || "$CMD" == "sandbox" ]]; then
   docker exec -it poc-api bash -c "cd /opt/api && PYTHONPATH=. python scripts/manager.py '$CMD'"
 elif [[ "$CMD" == "psql" ]]; then
-  *TBW*
+  docker exec -it poc-apidb bash -c "COLUMNS='' PGPASSWORD=poc_password psql -h localhost -U poc_user poc_api $*"
 elif [[ "$CMD" == "python" ]]; then
   docker exec -it poc-api bash -c "cd /opt/api && PYTHONPATH=. python -i scripts/shell.py"
 elif [[ "$CMD" == "rebuild" ]]; then
-  *TBW*
+  docker-compose build --no-cache
 elif [[ "$CMD" == "rmdb" ]]; then
-	*TBW*
+	sudo rm -rf docker-data/apidb
 elif [[ "$CMD" == "restart" ]]; then
-  *TBW*
+  docker-compose down && docker-compose up --force-recreate
 elif [[ "$CMD" == "start" ]]; then
   docker-compose up
 elif [[ "$CMD" == "webapp" ]]; then
-  *TBW*
+  cd webapp && yarn install && yarn start
 fi

@@ -1,9 +1,10 @@
 import enum
-from sqlalchemy import Column, \
+from sqlalchemy import BigInteger, \
+                        Column, \
                        Enum, \
                        String
+from sqlalchemy.orm import relationship
 from sqlalchemy_api_handler import ApiHandler
-
 from models.mixins.has_science_feedback_mixin import HasScienceFeedbackMixin
 from utils.db import Model
 

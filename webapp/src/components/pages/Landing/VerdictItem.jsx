@@ -7,10 +7,10 @@ const _ = ({ verdict }) => {
   return (
     <div className="verdict-item">
       <div className="headline">
-        *TBW*
+        {title}
       </div>
       <div className="editor">
-        *TBW*
+        {`editor : ${editor.firstName} ${editor.lastName}`}
       </div>
     </div>
   )
@@ -18,7 +18,11 @@ const _ = ({ verdict }) => {
 
 
 _.propTypes = {
-  verdict: *TBW*
+  verdict: PropTypes.shape({
+    claim: PropTypes.shape({
+      text: PropTypes.string.isRequired
+    })
+  })
 }
 
 

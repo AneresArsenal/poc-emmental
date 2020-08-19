@@ -18,14 +18,16 @@ const { store } = configureStore()
 
 
 export default () => (
- <*TBW*>
-   <*TBW*>
+ <Provider store={store}>
+   <BrowserRouter>
      <App>
        <Switch>
-         {routes.map(*TBW*)}
+         {routes.map(route => (
+           <Route {...route} key={route.path}/>
+         ))}
          <Route component={NotMatch} />
        </Switch>
      </App>
-   </*TBW*>
- </*TBW*>
+   </BrowserRouter>
+ </Provider>
 )

@@ -1,1 +1,17 @@
-*TBW*
+.verdict-item {
+    border: 1px solid $grey-light;
+    border-radius: 0.625rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    .headline {
+        font-style: italic;
+        margin-bottom: 0.5rem;
+    }
+
+    .editor {
+        color: $grey;
+        font-size: 0.8125 rem;
+        padding-left: 1rem;
+    }
+}

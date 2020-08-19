@@ -18,8 +18,8 @@ def setup(flask_app,
           with_scripts_manager=False,
           with_routes=False):
 
+    flask_app.secret_key = os.environ.get('FLASK_SECRET', '+%+5Q83!abR+-Dp@')
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('POSTGRES_URL')
-    # *TBW*
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = flask_app
     db.init_app(flask_app)
@@ -35,10 +35,9 @@ def setup(flask_app,
 
     if with_cors:
         # *TBW*
-        from flask_cors import CORS
-        cors = CORS(flask_app,
-                    resources={r"/*": {"origins": "*"}},
-                    supports_credentials=True)
+        CORS(flask_app,
+             resources={r"/*": {"origins": "*"}},
+             supports_credentials=True)
 
     # *TBW*
     flask_app.url_map.strict_slashes = False

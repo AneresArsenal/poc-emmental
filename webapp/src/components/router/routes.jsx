@@ -3,7 +3,7 @@ import Landing from 'components/pages/Landing'
 
 export default [
   {
-    component: *TBW*,
+    component: Landing,
     exact: true,
     path: '/',
     title: 'Landing',

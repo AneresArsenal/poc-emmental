@@ -27,7 +27,7 @@ export default (initialState = {}) => {
 
  const storeEnhancer = buildStoreEnhancer(middlewares)
 
- const store = *TBW*
+ const store = createStore(rootReducer, initialState, storeEnhancer)
 
  return { store }
 }

@@ -5,4 +5,7 @@ import Root from 'components/Root'
 import 'styles/index.scss'
 
 
-render(*TBW*)
+render(
+    <Root />,
+    document.getElementById('root')
+)
